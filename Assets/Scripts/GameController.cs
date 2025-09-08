@@ -5,8 +5,9 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject estrelasFundo, pontoEstrelas, pontoDestroi;
+    [SerializeField] private GameObject mensagemInicial, botaoStart, setasIndicativas;
     public static GameController instance;
-    private float interval = 1f;
+    private bool started;
 
     private void Awake()
     {
@@ -25,27 +26,46 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("QuedaEstrelas", 0f, interval);
+        IniciacaoJogo();
     }
 
-    private void QuedaEstrelas()
-    {
-        if (estrelasFundo != null && pontoEstrelas != null)
-        {
-            Instantiate(
-                estrelasFundo,
-                pontoEstrelas.transform.position,
-                Quaternion.identity
-            );
-        }
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        IniciacaoJogo();
+        ReniciacaoJogo();
     }
-    
+    private void IniciacaoJogo()
+    {
+        if (Input.GetKeyDown(KeyCode.Return) && !started)
+        {
+            if (mensagemInicial.activeSelf || botaoStart.activeSelf || setasIndicativas.activeSelf) //activeSelf verifica se o objeto estar na cena.
+            {
+                mensagemInicial.SetActive(false); //Retira o elemento da cena, mas não o destroi
+                botaoStart.SetActive(false);
+                setasIndicativas.SetActive(false);
+            }
+            started = true;
+            Debug.Log("Foguete Estelar Iniciado!");
+        }
+    }
+
+    private void ReniciacaoJogo()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && !started)
+        {
+            if (!mensagemInicial.activeSelf || !botaoStart.activeSelf || !setasIndicativas.activeSelf)
+            {
+                mensagemInicial.SetActive(true);
+                botaoStart.SetActive(true);
+                setasIndicativas.SetActive(true);
+            }
+            started = true;
+            Debug.Log("Foguete Estelar Reiniciado!");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("estrelasFundo"))
@@ -55,3 +75,17 @@ public class GameController : MonoBehaviour
         }
     }
 }
+
+/*
+ANOTAÇÕES PARA FUNÇÕES:
+
+float randomY = Random.Range(-2f, 2f);
+transform.position = new Vector2(transform.position.x, randomY);
+
+yVariable = Random.Range(-1, 5) < 0; //Probabilidade de oscilar os pilares
+if (yVariable)
+{
+    OscilateY();
+}
+
+*/
