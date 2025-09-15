@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private GameObject estrelasFundo, pontoEstrelas, pontoDestroi;
+    [SerializeField] private GameObject pontoAsteroides, pontoDestroi;
     [SerializeField] private GameObject mensagemInicial, botaoStart, setasIndicativas;
+    [SerializeField] private GameObject AsteroideVerde, AsteroideAmarelo, AsteroideVermelho;
     public static GameController instance;
     private bool started;
+    [SerializeField] private float intervalo;
 
     private void Awake()
     {
@@ -26,7 +28,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        IniciacaoJogo();
+        
     }
 
 
@@ -34,7 +36,6 @@ public class GameController : MonoBehaviour
     void Update()
     {
         IniciacaoJogo();
-        ReniciacaoJogo();
     }
     private void IniciacaoJogo()
     {
@@ -48,6 +49,48 @@ public class GameController : MonoBehaviour
             }
             started = true;
             Debug.Log("Foguete Estelar Iniciado!");
+
+            //InvokeRepeating([nome da função entre aspas], [tempo em segundos para começar a função], [intevalo de repetição em segundos]);
+            InvokeRepeating("Asteroides", 1f, intervalo); 
+        }
+    }
+
+    private void Asteroides()
+    {
+        List<string> listaAsteroides = new List<string> { "Verde", "Amarelo", "Vermelho" };
+        int posicaoAsteroide = Random.Range(0, 3);
+        string AsteroideEscolhido = listaAsteroides[posicaoAsteroide];
+        float posicaoX = Random.Range(-10f, 10f);
+        float posicaoY = pontoAsteroides.transform.position.y;
+        //intervalo = intervalo - 0.1f;
+
+        //FAZER OS ASTEROIDES APARECEREM MAIS DE UM EM UM COM LOOP
+        switch (AsteroideEscolhido)
+        {
+            case "Verde":
+                Instantiate(
+                    AsteroideVerde, //Instancia do asteroide
+                    new Vector2(posicaoX, posicaoY), //Na posição (posicaoX, posicaoY)
+                    Quaternion.identity  //Com rotação padrão (sem rotação, identidade)
+                );
+                Debug.Log("Asteroide Verde");
+                break;
+            case "Amarelo":
+                Instantiate(
+                    AsteroideAmarelo,
+                    new Vector2(posicaoX, posicaoY),
+                    Quaternion.identity
+                );
+                Debug.Log("Asteroide Amarelo");
+                break;
+            case "Vermelho":
+                Instantiate(
+                    AsteroideVermelho,
+                    new Vector2(posicaoX, posicaoY),
+                    Quaternion.identity
+                );
+                Debug.Log("Asteroide Vermelho");
+                break;
         }
     }
 
@@ -65,27 +108,4 @@ public class GameController : MonoBehaviour
             Debug.Log("Foguete Estelar Reiniciado!");
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("estrelasFundo"))
-        {
-            Debug.Log("Estrelas destruidas.");
-            Destroy(gameObject);
-        }
-    }
 }
-
-/*
-ANOTAÇÕES PARA FUNÇÕES:
-
-float randomY = Random.Range(-2f, 2f);
-transform.position = new Vector2(transform.position.x, randomY);
-
-yVariable = Random.Range(-1, 5) < 0; //Probabilidade de oscilar os pilares
-if (yVariable)
-{
-    OscilateY();
-}
-
-*/

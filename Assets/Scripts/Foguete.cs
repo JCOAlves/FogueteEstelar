@@ -32,6 +32,7 @@ public class Foguete : MonoBehaviour
             Debug.Log("Para Esquerda");
         }
     }
+    //CRIAR FUNÇÃO PARA COLISÃO COM FOGUETE
 
     // Update is called once per frame
     void Update()

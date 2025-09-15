@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2463464075817547019}
   - component: {fileID: 4416142810130993977}
   - component: {fileID: 5376641776339343364}
+  - component: {fileID: -4150913406109397485}
   m_Layer: 0
   m_Name: asteroide_verde
-  m_TagString: Untagged
+  m_TagString: AsteroideVerde
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +137,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -148,3 +149,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-4150913406109397485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8994721054873022897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7097876914ca0724489e211d87e240f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
