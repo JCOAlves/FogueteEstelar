@@ -20,7 +20,6 @@ public class Foguete : MonoBehaviour
                 transform.position.x + deslocamentoX,
                 transform.position.y
             );
-            Debug.Log("Para Direita");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -29,10 +28,24 @@ public class Foguete : MonoBehaviour
                 transform.position.x - deslocamentoX,
                 transform.position.y
             );
-            Debug.Log("Para Esquerda");
         }
     }
     //CRIAR FUNÇÃO PARA COLISÃO COM FOGUETE
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("AsteroideVerde"))
+        {
+            Debug.Log("Asteroide Verde destruido");
+            //Destroy(gameObject);
+        }
+        else if (other.CompareTag("AsteroideAmarelo"))
+        {
+            Debug.Log("Asteroide Amarelo destruido");
+        }
+        else if (other.CompareTag("AsteroideVermelho")) {
+            Debug.Log("Asteroide Vermelho destruido");
+        }
+    }
 
     // Update is called once per frame
     void Update()

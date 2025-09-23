@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject pontoAsteroides, pontoDestroi;
     [SerializeField] private GameObject mensagemInicial, botaoStart, setasIndicativas;
-    [SerializeField] private GameObject AsteroideVerde, AsteroideAmarelo, AsteroideVermelho;
+    [SerializeField] private GameObject AsteroideVerde, AsteroideAmarelo, AsteroideVermelho, Pontuacao;
+    [SerializeField] private Text TextoPontuacao;
     public static GameController instance;
     private bool started;
     [SerializeField] private float intervalo;
+    [SerializeField] private int Loop;
+
 
     private void Awake()
     {
@@ -28,7 +32,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        IniciacaoJogo();
     }
 
 
@@ -46,6 +50,7 @@ public class GameController : MonoBehaviour
                 mensagemInicial.SetActive(false); //Retira o elemento da cena, mas não o destroi
                 botaoStart.SetActive(false);
                 setasIndicativas.SetActive(false);
+                Pontuacao.SetActive(true);
             }
             started = true;
             Debug.Log("Foguete Estelar Iniciado!");
@@ -57,39 +62,50 @@ public class GameController : MonoBehaviour
 
     private void Asteroides()
     {
-        List<string> listaAsteroides = new List<string> { "Verde", "Amarelo", "Vermelho" };
-        int posicaoAsteroide = Random.Range(0, 3);
+        List<string> listaAsteroides = new List<string> { "Verde", "Amarelo", "Amarelo", "Vermelho", "Vermelho", "Vermelho"};
+        int posicaoAsteroide = Random.Range(0, 6);
         string AsteroideEscolhido = listaAsteroides[posicaoAsteroide];
-        float posicaoX = Random.Range(-10f, 10f);
+        float posicaoX;
         float posicaoY = pontoAsteroides.transform.position.y;
         //intervalo = intervalo - 0.1f;
-
-        //FAZER OS ASTEROIDES APARECEREM MAIS DE UM EM UM COM LOOP
+    
         switch (AsteroideEscolhido)
         {
             case "Verde":
-                Instantiate(
-                    AsteroideVerde, //Instancia do asteroide
-                    new Vector2(posicaoX, posicaoY), //Na posição (posicaoX, posicaoY)
-                    Quaternion.identity  //Com rotação padrão (sem rotação, identidade)
-                );
-                Debug.Log("Asteroide Verde");
+                for (int X = 0; X < Loop; X++)
+                {
+                    posicaoX = Random.Range(-10f, 10f);
+                    posicaoY = posicaoY + (5 * X);
+                    Instantiate(
+                        AsteroideVerde, //Instancia do asteroide
+                        new Vector2(posicaoX, posicaoY), //Na posição (posicaoX, posicaoY)
+                        Quaternion.identity  //Com rotação padrão (sem rotação, identidade)
+                    );
+                }
                 break;
             case "Amarelo":
-                Instantiate(
-                    AsteroideAmarelo,
-                    new Vector2(posicaoX, posicaoY),
-                    Quaternion.identity
-                );
-                Debug.Log("Asteroide Amarelo");
+                for (int X = 0; X < Loop; X++)
+                {
+                    posicaoX = Random.Range(-10f, 10f);
+                    posicaoY = posicaoY + (5 * X);
+                    Instantiate(
+                        AsteroideAmarelo,
+                        new Vector2(posicaoX, posicaoY),
+                        Quaternion.identity
+                    );
+                }
                 break;
             case "Vermelho":
-                Instantiate(
-                    AsteroideVermelho,
-                    new Vector2(posicaoX, posicaoY),
-                    Quaternion.identity
-                );
-                Debug.Log("Asteroide Vermelho");
+                for (int X = 0; X < Loop; X++)
+                {
+                    posicaoX = Random.Range(-10f, 10f);
+                    posicaoY = posicaoY + (5 * X);
+                    Instantiate(
+                        AsteroideVermelho,
+                        new Vector2(posicaoX, posicaoY),
+                        Quaternion.identity
+                    );
+                }
                 break;
         }
     }

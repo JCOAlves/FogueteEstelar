@@ -13,10 +13,11 @@ public class Asteroides : MonoBehaviour
 
     }
 
+    //Função para destruir asteroides fora de cena
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("pontoDestroi")){
-            UnityEngine.Debug.Log(gameObject.name+" destruido");
+        if (other.CompareTag("pontoDestroi"))
+        {
             Destroy(gameObject);
         }
     }
