@@ -42,12 +42,14 @@ public class Foguete : MonoBehaviour
     {
         if (other.CompareTag("AsteroideVerde"))
         {
-            GameController.instance.ContagemPontos(5);
+            GameController.instance.ContagemPontos(10);
+            Destroy(other.gameObject);
             Debug.Log("Asteroide Verde destruido");
         }
         else if (other.CompareTag("AsteroideAmarelo"))
         {
-            GameController.instance.ContagemPontos(-5);
+            GameController.instance.ContagemPontos(1);
+            Destroy(other.gameObject);
             Debug.Log("Asteroide Amarelo destruido");
         }
         else if (other.CompareTag("AsteroideVermelho"))
@@ -59,6 +61,8 @@ public class Foguete : MonoBehaviour
                 reniciar.SetActive(true);
                 pontuacao.SetActive(false);
             }
+
+            GameController.instance.started = false;
             Time.timeScale = 0f; //Paraliza o jogo.
         }
     }

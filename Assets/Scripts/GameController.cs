@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject pontoAsteroides, pontoDestroi;
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour
         else
         {
             //Destroi outras instacias com Gamecontroller. Só pode haver um objeto GameController.
+            CancelInvoke("Asteroides");
             Destroy(gameObject);
         }
     }
@@ -61,6 +63,7 @@ public class GameController : MonoBehaviour
             started = true;
             Debug.Log("Foguete Estelar Iniciado!");
 
+        
             //InvokeRepeating([nome da função entre aspas], [tempo em segundos para começar a função], [intevalo de repetição em segundos]);
             InvokeRepeating("Asteroides", 1f, intervalo);
         }
@@ -68,12 +71,12 @@ public class GameController : MonoBehaviour
     }
     
     //Resolver o problema da reiniciação do jogo
-    private void ReniciacaoJogo()
+    public void ReniciacaoJogo()
     {
         if (!started && Input.GetKeyDown(KeyCode.R))
         {
             started = true;
-            IniciacaoJogo();
+            //IniciacaoJogo();
         }
     }
 
