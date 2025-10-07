@@ -62,7 +62,7 @@ public class Foguete : MonoBehaviour
                 pontuacao.SetActive(false);
             }
 
-            GameController.instance.started = false;
+            GameController.instance.SetStarted(false);
             Time.timeScale = 0f; //Paraliza o jogo.
         }
     }
@@ -70,7 +70,7 @@ public class Foguete : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameController.instance != null && GameController.instance.started && Time.timeScale != 0f)
+        if (GameController.instance != null && GameController.instance.GetStarted() && Time.timeScale != 0f)
         {
             Movimentacao();
         }

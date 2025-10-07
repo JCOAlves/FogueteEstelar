@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     [SerializeField] public Text TextoPontuacao;
     private int Pontos;
     public static GameController instance;
-    public bool started;
+    private bool started;
     [SerializeField] private float intervalo;
     [SerializeField] private int Loop;
 
@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
 
@@ -63,13 +63,13 @@ public class GameController : MonoBehaviour
             started = true;
             Debug.Log("Foguete Estelar Iniciado!");
 
-        
+
             //InvokeRepeating([nome da função entre aspas], [tempo em segundos para começar a função], [intevalo de repetição em segundos]);
             InvokeRepeating("Asteroides", 1f, intervalo);
         }
-        
+
     }
-    
+
     //Resolver o problema da reiniciação do jogo
     public void ReniciacaoJogo()
     {
@@ -135,5 +135,15 @@ public class GameController : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void SetStarted(bool started)
+    {
+        this.started = started;
+    }
+
+    public bool GetStarted()
+    {
+        return started;
     }
 }
