@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
             case "Verde":
                 for (int X = 0; X < Loop; X++)
                 {
-                    posicaoX = Random.Range(-10f, 10f);
+                    posicaoX = Random.Range(-4.5f, 4.5f);
                     posicaoY += 5 * X;
                     Instantiate(
                         AsteroideVerde, //Instancia do asteroide
@@ -113,7 +113,7 @@ public class GameController : MonoBehaviour
             case "Amarelo":
                 for (int X = 0; X < Loop; X++)
                 {
-                    posicaoX = Random.Range(-10f, 10f);
+                    posicaoX = Random.Range(-4.5f, 4.5f);
                     posicaoY += 5 * X;
                     Instantiate(
                         AsteroideAmarelo,
@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour
             case "Vermelho":
                 for (int X = 0; X < Loop; X++)
                 {
-                    posicaoX = Random.Range(-10f, 10f);
+                    posicaoX = Random.Range(-4.5f, 4.5f);
                     posicaoY += 5 * X;
                     Instantiate(
                         AsteroideVermelho,

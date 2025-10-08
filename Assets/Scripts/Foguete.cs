@@ -20,7 +20,7 @@ public class Foguete : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             float direita = transform.position.x + deslocamentoX;
-            if (direita > 12f) { direita = 12f; }
+            if (direita > 4.5f) { direita = 4.5f; }
             transform.position = new Vector2(
                 direita,
                 transform.position.y
@@ -30,7 +30,7 @@ public class Foguete : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             float esquerda = transform.position.x - deslocamentoX;
-            if (esquerda < -12f){ esquerda = -12f; }
+            if (esquerda < -4.5f){ esquerda = -4.5f; }
             transform.position = new Vector2(
                 esquerda,
                 transform.position.y
